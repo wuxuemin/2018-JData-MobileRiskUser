@@ -5,8 +5,8 @@ from sklearn import metrics
 from pandas import Series, DataFrame
 from numpy import array
 from sklearn.metrics import f1_score 
-train = pd.read_csv('/home/wxm/Downloads/data_mining/feature_engineer/train_feature.csv')
-test = pd.read_csv('/home/wxm/Downloads/data_mining/feature_engineer/test_feature.csv')
+train = pd.read_csv('../feature_engineer/train_feature.csv')
+test = pd.read_csv('../feature_engineer/test_feature.csv')
 train.drop(train.columns[0], axis=1,inplace=True) 
 test.drop(test.columns[0], axis=1,inplace=True) 
 y_train=train.label
@@ -52,6 +52,6 @@ df=df.sort_values(by='label',ascending=False)
 df.label=df.label.map(lambda x: 1 if x>=0.5 else 0)
 df.label = df.label.map(lambda x: int(x))
 
-df.to_csv('/home/wxm/Downloads/data_mining/result/submission.csv',index=False,header=False,sep=',',columns=['uid','label'])
+df.to_csv('../result/submission.csv',index=False,header=False,sep=',',columns=['uid','label'])
 
 

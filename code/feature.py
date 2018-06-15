@@ -1,12 +1,12 @@
 import pandas as pd
 import numpy as np
-uid_train = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_train/uid_train.txt',sep='\t',header=None,names=('uid','label'))
-voice_train = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_train/voice_train.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','end_time','call_type','in_out'),dtype={'start_time':str,'end_time':str})
-sms_train = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_train/sms_train.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','in_out'),dtype={'start_time':str})
-wa_train = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_train/wa_train.txt',sep='\t',header=None,names=('uid','wa_name','visit_cnt','visit_dura','up_flow','down_flow','wa_type','date'),dtype={'date':str})
-voice_test = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_Test-B/voice_test_b.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','end_time','call_type','in_out'),dtype={'start_time':str,'end_time':str})
-sms_test = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_Test-B/sms_test_b.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','in_out'),dtype={'start_time':str})
-wa_test = pd.read_csv('/home/wxm/Downloads/data_mining/JDATA_Test-B/wa_test_b.txt',sep='\t',header=None,names=('uid','wa_name','visit_cnt','visit_dura','up_flow','down_flow','wa_type','date'),dtype={'date':str})
+uid_train = pd.read_csv('../JDATA_train/uid_train.txt',sep='\t',header=None,names=('uid','label'))
+voice_train = pd.read_csv('../JDATA_train/voice_train.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','end_time','call_type','in_out'),dtype={'start_time':str,'end_time':str})
+sms_train = pd.read_csv('../JDATA_train/sms_train.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','in_out'),dtype={'start_time':str})
+wa_train = pd.read_csv('../JDATA_train/wa_train.txt',sep='\t',header=None,names=('uid','wa_name','visit_cnt','visit_dura','up_flow','down_flow','wa_type','date'),dtype={'date':str})
+voice_test = pd.read_csv('../JDATA_Test-B/voice_test_b.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','end_time','call_type','in_out'),dtype={'start_time':str,'end_time':str})
+sms_test = pd.read_csv('../JDATA_Test-B/sms_test_b.txt',sep='\t',header=None,names=('uid','opp_num','opp_head','opp_len','start_time','in_out'),dtype={'start_time':str})
+wa_test = pd.read_csv('../JDATA_Test-B/wa_test_b.txt',sep='\t',header=None,names=('uid','wa_name','visit_cnt','visit_dura','up_flow','down_flow','wa_type','date'),dtype={'date':str})
 
 uid_test = pd.DataFrame({'uid':pd.unique(wa_test['uid'])})
 uid_test.to_csv('/home/wxm/Downloads/data_mining/JDATA_Test-B/uid_test_b.txt',index=None)
@@ -62,8 +62,8 @@ test_feature = uid_test
 for feat in feature:
     test_feature=pd.merge(test_feature,feat,how='left',on='uid')
 
-#train_feature.to_csv('/home/wxm/Downloads/data_mining/train_featureV1.csv',index=None)
-#test_feature.to_csv('/home/wxm/Downloads/data_mining/test_featureV1.csv',index=None)
+#train_feature.to_csv('../train_featureV1.csv',index=None)
+#test_feature.to_csv('../test_featureV1.csv',index=None)
 
 train=train_feature.fillna(0)
 test=test_feature.fillna(0)
@@ -130,7 +130,7 @@ def get_cross_feature(table):
 train_feature1 = get_cross_feature(train)
 test_feature1 = get_cross_feature(test)
 
-train_feature1.to_csv('/home/wxm/Downloads/data_mining/feature_engineer/train_feature.csv')
-test_feature1.to_csv('/home/wxm/Downloads/data_mining/feature_engineer/test_feature.csv')
+train_feature1.to_csv('../feature_engineer/train_feature.csv')
+test_feature1.to_csv('../feature_engineer/test_feature.csv')
 
 
